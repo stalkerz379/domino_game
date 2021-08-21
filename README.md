@@ -41,9 +41,9 @@ Modify your Stage 2 code:
 
 * If it's a user's turn, prompt the user for a move and apply it. If the input is invalid (a not-integer or it exceeds limitations), request a new input with the following message: Invalid input. Please try again..
 
-*If it's a computer's turn, prompt the user to press Enter, randomly generate a move, and apply it.
+* If it's a computer's turn, prompt the user to press Enter, randomly generate a move, and apply it.
 
-*Switch turns.
+* Switch turns.
 
 Keep in mind that at this stage we have no rules! Both the player and the computer can place their dominoes however they like.
 #### Stage 4: Enforcing Rules
