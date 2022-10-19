@@ -1,6 +1,8 @@
 # domino_game
-Simple domino game with a command line interface\n
-Old version:`domino_game.py` - left for the history :)\n
+Simple domino game with a command line interface
+
+Old version:`domino_game.py` - left for the history :)
+
 New version: 'domino_game_new_version.py' - after refactoring.
 
 ## Description
