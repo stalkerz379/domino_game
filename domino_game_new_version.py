@@ -199,6 +199,13 @@ class Computer(Player):
             self.take_domino_from_stock(all_dominoes)  # if no valid move, take one domino to the computers deck
 
 
+def deck(*args) -> Deck:
+    deck_ = Deck()
+    for arg in args:
+        deck_.add_domino(arg)
+    return deck_
+
+
 class DominoGame:
     __double_dominoes = deck(Domino(0, 0), Domino(1, 1), Domino(2, 2), Domino(3, 3), Domino(4, 4), Domino(5, 5), Domino(6, 6))
 
@@ -218,11 +225,11 @@ class DominoGame:
         [1, 2][2, 4][4, 1]...[5, 5][5, 6][6, 1]
 
         """
-        result = "======================================================================\n"
+        separator = "=" * 70
         if len(self.game_deck) <= 6:
-            return f"{result}Stock Size: {len(self.all_dominoes)}\nComputer pieces: " \
+            return f"{separator}\nStock Size: {len(self.all_dominoes)}\nComputer pieces: " \
                    f"{len(self.computer.player_domino_deck)}\n\n{self.game_deck}\n\n"
-        return f"{result}Stock Size: {len(self.all_dominoes)}\nComputer pieces: " \
+        return f"{separator}\nStock Size: {len(self.all_dominoes)}\nComputer pieces: " \
                f"{len(self.computer.player_domino_deck)}\n\n{self.game_deck[1]}{self.game_deck[2]}{self.game_deck[3]}..." \
                f"{self.game_deck[-2]}{self.game_deck[-1]}{self.game_deck[0]}\n\n"
 
@@ -257,16 +264,16 @@ class DominoGame:
             print("The game is over. The computer won!")
             exit()
         elif not self.all_dominoes:
-            is_steps_possible = self.__check_if_moves_possible([player.player_domino_deck, self.computer.player_domino_deck])
+            is_steps_possible = self.__check_if_moves_possible(self.players)
             if not is_steps_possible:
                 print('The game is over. It\'s a draw!')
                 print(f'Game deck: {self.game_deck}')   # print full game deck
                 print(f'Computer\'s dominoes left: {self.computer.player_domino_deck}')
                 exit()
 
-    def __check_if_moves_possible(self, decks: list[Deck]) -> bool:
-        for deck in decks:
-            for domino in deck:
+    def __check_if_moves_possible(self, players: list[Player]) -> bool:
+        for player in players:
+            for domino in player.player_domino_deck:
                 if self.game_deck.is_valid_move(domino):
                     return True
         return False
@@ -305,13 +312,6 @@ def read_user_input(user_deck: Deck, game_deck: Deck) -> int:
             print("Invalid input. Please try again.")
         except IndexError:
             print("Illegal move. Please try again.")
-
-
-def deck(*args) -> Deck:
-    deck_ = Deck()
-    for arg in args:
-        deck_.add_domino(arg)
-    return deck_
 
 
 def main():
