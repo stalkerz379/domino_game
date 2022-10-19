@@ -1,5 +1,7 @@
 # domino_game
-Simple domino game with a command line interface
+Simple domino game with a command line interface\n
+Old version:`domino_game.py` - left for the history :)
+New version: 'domino_game_new_version.py' - after refactoring.
 
 ## Description
 To play domino, you need a full domino set and at least two players. In this project, the game is played by you and the computer.
